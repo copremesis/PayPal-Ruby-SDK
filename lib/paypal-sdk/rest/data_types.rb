@@ -379,7 +379,7 @@ module PayPal::SDK
         end
       end
 
-      class Address < BaseAddress
+      class PP_Address < BaseAddress
         def self.load_members
           object_of :phone, String
         end
