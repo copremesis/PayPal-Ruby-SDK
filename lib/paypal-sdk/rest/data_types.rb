@@ -138,7 +138,7 @@ module PayPal::SDK
         def self.load_members
           object_of :email, String
           object_of :external_remember_me_id, String
-          object_of :billing_address, Address
+          object_of :billing_address, PP_Address
         end
 
         include RequestDataType
@@ -148,7 +148,7 @@ module PayPal::SDK
         def self.load_members
           object_of :response_code, String
           object_of :avs_code, String
-          object_of :cvv_code, Address
+          object_of :cvv_code, PP_Address
           object_of :advice_code, String
           object_of :eci_submitted, String
           object_of :vpas, String
@@ -221,7 +221,7 @@ module PayPal::SDK
         def self.load_members
           object_of :email, String
           object_of :external_remember_me_id, String
-          object_of :billing_address, Address
+          object_of :billing_address, PP_Address
         end
 
         include RequestDataType
@@ -231,9 +231,9 @@ module PayPal::SDK
         def self.load_members
           object_of :id, String
           object_of :card_number, String
-          object_of :issuer_id, Address
-          object_of :issuer_name, Address
-          object_of :image_key, Address
+          object_of :issuer_id, PP_Address
+          object_of :issuer_name, PP_Address
+          object_of :image_key, PP_Address
         end
 
         include RequestDataType
@@ -317,7 +317,7 @@ module PayPal::SDK
           object_of :cvv2, String
           object_of :first_name, String
           object_of :last_name, String
-          object_of :billing_address, Address
+          object_of :billing_address, PP_Address
           object_of :external_customer_id, String
           object_of :state, String
           object_of :valid_until, String
@@ -421,7 +421,7 @@ module PayPal::SDK
           object_of :first_name, String
           object_of :last_name, String
           object_of :billing_country, String
-          object_of :billing_address, Address
+          object_of :billing_address, PP_Address
           object_of :external_customer_id, String
           object_of :status, String
           object_of :card_product_class, String
@@ -446,7 +446,7 @@ module PayPal::SDK
           object_of :first_name, String
           object_of :last_name, String
           object_of :birth_date, String
-          object_of :billing_address, Address
+          object_of :billing_address, PP_Address
           object_of :state, String
           object_of :confirmation_status, String
           object_of :payer_id, String
@@ -630,7 +630,7 @@ module PayPal::SDK
           object_of :tax_id, String
           object_of :tax_id_type, String
           object_of :country_code, String
-          object_of :billing_address, Address
+          object_of :billing_address, PP_Address
           object_of :shipping_address, ShippingAddress
         end
       end
@@ -1328,7 +1328,7 @@ module PayPal::SDK
 	            object_of :fax, Phone
 	            object_of :website, String
 	            object_of :additional_info, String
-	            object_of :address, Address
+	            object_of :address, PP_Address
         end
       end
 
@@ -1437,7 +1437,7 @@ module PayPal::SDK
       class Templates < Base
 
         def self.load_members
-	          array_of  :addresses, Address
+	          array_of  :addresses, PP_Address
 	          array_of  :emails, String
 	          array_of  :phones, Phone
 	          array_of  :templates, Template
@@ -1805,7 +1805,7 @@ module PayPal::SDK
 	        object_of :email, String
 	        object_of :first_name, String
 	        object_of :last_name, String
-	        object_of :address, Address
+	        object_of :address, PP_Address
 	        object_of :business_name, String
 	        object_of :phone, Phone
 	        object_of :fax, Phone
@@ -1829,7 +1829,7 @@ module PayPal::SDK
           object_of :phone, Phone
 
           define_method "address=" do |value|
-            if value.is_a?(Address)
+            if value.is_a?(PP_Address)
               value = value.to_hash
             end
             object = convert_object(value, InvoiceAddress)
@@ -1839,7 +1839,7 @@ module PayPal::SDK
           define_method "address" do |&block|
             default_value = PayPal::SDK::Core::Util::OrderedHash.new
             value = instance_variable_get("@address") || ( default_value && (send("address=", default_value)))
-            value = convert_object(value.to_hash, Address)
+            value = convert_object(value.to_hash, PP_Address)
             value
           end
 
@@ -1865,7 +1865,7 @@ module PayPal::SDK
           object_of :email, String
 
           define_method "address=" do |value|
-            if value.is_a?(Address)
+            if value.is_a?(PP_Address)
               value = value.to_hash
             end
             object = convert_object(value, InvoiceAddress)
@@ -1875,7 +1875,7 @@ module PayPal::SDK
           define_method "address" do |&block|
             default_value = PayPal::SDK::Core::Util::OrderedHash.new
             value = instance_variable_get("@address") || ( default_value && (send("address=", default_value)))
-            value = convert_object(value.to_hash, Address)
+            value = convert_object(value.to_hash, PP_Address)
             value
           end
 
@@ -2240,7 +2240,7 @@ module PayPal::SDK
               object_of :start_date, String
               object_of :agreement_details, AgreementDetails
               object_of :payer, Payer
-              object_of :shipping_address, Address
+              object_of :shipping_address, PP_Address
               object_of :override_merchant_preferences, MerchantPreferences
             array_of  :override_charge_models, OverrideChargeModel
               object_of :plan, Plan
